@@ -1,8 +1,14 @@
 from solution import sum_two
 
 def test_strict_decorator():
-    assert sum_two(1, 2) == 3  # Корректные типы
     assert sum_two(0, 0) == 0  # Корректные типы
+
+    try:
+        kwargs = {"a": 1, "b": True}
+        sum_two(**kwargs) == 3  # Корректные типы
+    except TypeError as e:
+        assert str(e) == "Аргумент 'b' должен быть типа int, а не bool"
+
     try:
         sum_two(1, 2.4)  # Неправильный тип: float вместо int
     except TypeError as e:

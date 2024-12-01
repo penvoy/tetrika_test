@@ -13,7 +13,7 @@ def strict(func):
         # Проверяем соответствие типов
         for arg_name, arg_value in zip(annotations.keys(), all_args):
             expected_type = annotations[arg_name]
-            if not isinstance(arg_value, expected_type):
+            if type(arg_value) != expected_type:
                 raise TypeError(f"Аргумент '{arg_name}' должен быть типа {expected_type.__name__}, а не {type(arg_value).__name__}")
 
         # Вызываем оригинальную функцию, если все типы корректны
